@@ -5,6 +5,7 @@
 export interface IProjectModel {
     name: string;
     normalizedProjectName: string;
+    capitalizedProjectName: string;
     projectName: string;
 }
 

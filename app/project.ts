@@ -1,6 +1,7 @@
 import models = require('./models');
 import services = require('./services');
 import askers = require('./askers');
+import util = require('./util');
 
 export class ProjectMetadata {
 	public name: string;
@@ -35,6 +36,7 @@ export class AvailableProjects {
 		model.name = meta.name;
 		model.projectName = props.projectName;
 		model.normalizedProjectName = props.projectName.replace(/[^A-Z0-9]/ig, '-').toLowerCase();
+		model.capitalizedProjectName = util.capitalize(props.projectName).replace(/[^A-Z0-9]/ig, '');
 		return model;
 	}
 

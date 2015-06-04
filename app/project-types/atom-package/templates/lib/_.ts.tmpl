@@ -1,0 +1,45 @@
+/// <reference path="../typings/tsd.d.ts"/>
+
+import <%= capitalizedProjectName %>View = require('./<%= normalizedProjectName %>-view');
+import {CompositeDisposable} from 'atom';
+
+class <%= capitalizedProjectName %> {
+    <%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>View: I<%= capitalizedProjectName %>View;
+    modalPanel: any;
+    subscriptions: CompositeDisposable;
+
+    public activate(state: any) {
+        this.<%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>View = new <%= capitalizedProjectName %>View(state.<%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>State);
+        this.modalPanel = (<any>atom.workspace).addModalPanel({item: this.<%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>View.getElement(), visible: false});
+
+        // Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
+        this.subscriptions = new CompositeDisposable();
+
+        // Register command that toggles this view
+        return this.subscriptions.add(atom.commands.add('atom-workspace', '<%= normalizedProjectName %>:toggle', () => this.toggle()));
+    }
+
+    public deactivate() {
+        this.modalPanel.destroy();
+        this.subscriptions.dispose();
+        this.<%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>View.destroy();
+    }
+
+    public serialize() {
+        return {
+            <%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>ViewState: this.<%= capitalizedProjectName[0].toLowerCase() + capitalizedProjectName.substring(1) %>View.serialize()
+        };
+    }
+
+    public toggle() {
+        console.log('<%= capitalizedProjectName %> was toggled!');
+
+        if (this.modalPanel.isVisible()) {
+            return this.modalPanel.hide();
+        } else {
+            return this.modalPanel.show();
+        }
+    }
+}
+
+export = new <%= capitalizedProjectName %>;

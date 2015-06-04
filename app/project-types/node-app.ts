@@ -8,6 +8,7 @@ export class NodeAppProjectModel implements models.IProjectModel {
     public name: string;
     public projectName: string;
     public normalizedProjectName: string;
+    public capitalizedProjectName: string;
     public testFramework: models.TestFramework;
     public taskTool: models.TaskTool;
 }
@@ -100,7 +101,7 @@ export class NodeAppProjectService implements services.IProjectService {
         util.copy(`${this.templatePath}_.editorconfig.tmpl`, '.editorconfig');
 
         console.log('');
-        console.log('> Congrats! Your template has been installed!');
+        console.log('> Congrats! Your app has been created!');
         console.log('> Next steps, execute the following commands');
         console.log('    npm install');
         console.log('    tsd reinstall');

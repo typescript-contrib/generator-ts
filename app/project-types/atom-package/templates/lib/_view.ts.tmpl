@@ -1,0 +1,29 @@
+/// <reference path="../typings/tsd.d.ts"/>
+
+class <%= capitalizedProjectName %>View implements I<%= capitalizedProjectName %>View {
+    element: HTMLDivElement;
+
+    constructor(serializedState: any) {
+        this.element = document.createElement('div');
+        this.element.classList.add('<%= normalizedProjectName %>');
+
+        var message = document.createElement('div');
+        message.textContent = 'The <%= projectName %> package is Alive! It\'s ALIVE! (from ts!)';
+        message.classList.add('message');
+        this.element.appendChild(message);
+    }
+
+    public serialize(): void {
+        //...
+    }
+
+    public destroy(): void {
+        this.element.remove();
+    }
+
+    public getElement(): HTMLDivElement {
+        return this.element;
+    }
+}
+
+export = <%= capitalizedProjectName %>View;

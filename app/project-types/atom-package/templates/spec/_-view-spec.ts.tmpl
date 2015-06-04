@@ -1,0 +1,9 @@
+/// <reference path="../typings/tsd.d.ts"/>
+
+import <%= capitalizedProjectName %>View = require('../lib/<%= normalizedProjectName %>-view');
+
+describe('<%= capitalizedProjectName %>View', function() {
+    it('has one valid test', function() {
+        expect('life').toBe('easy');
+    });
+});

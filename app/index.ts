@@ -71,15 +71,19 @@ class TypeScriptGenerator extends yeoman.generators.Base implements yeoman.gener
         });
 
         this.prompt(prompts, function(props) {
-            var promptService = new services.PromptService((pronpts, callback) => {
-                self.prompt(pronpts, callback);
+            this.model = factories.ModelFactory.factory(props);
+
+            var promptService = new services.PromptService((prompts, callback) => {
+                if(prompts.length > 0) {
+                    self.prompt(prompts, callback);
+                } else {
+                    callback(this.model);
+                }
             });
 
-            this.model = factories.ModelFactory.factory(props);
             var asker = factories.Askerfactory.factory(promptService, this.model);
             self.service = factories.ProjectServiceFactory.factory(this.model);
 
-            // TODO: precisa ser sujeito a falhas
             if(!props.innerPrompt) {
                 asker.ask((model) => {
 

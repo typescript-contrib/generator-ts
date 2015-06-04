@@ -5,6 +5,10 @@ import path = require('path');
 import fs = require('fs');
 import _ = require('underscore');
 
+export function capitalize(str: string) {
+    return str.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+}
+
 export function appyTemplate(templateFile: string, outFile: string, model: Object) {
     var data = fs.readFileSync(path.join(__dirname, templateFile)).toString();
     var template = _.template(data);

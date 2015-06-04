@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         var done = this.async();
 
         var path = require('path');
-        var generator = require(path.join(__dirname, 'dist/_new-type-generator'));
+        var generator = require(path.join(__dirname, 'app/_new-type-generator'));
 
         if (grunt.option('name')) {
             generator.generate(grunt.option('name'));
