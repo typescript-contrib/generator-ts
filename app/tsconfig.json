@@ -1,0 +1,30 @@
+{
+    "version": "1.5.0-alpha",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "suppressImplicitAnyIndexErrors": true
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./_new-type-generator.ts",
+        "./askers.ts",
+        "./factories.ts",
+        "./index.ts",
+        "./models.ts",
+        "./project-types/_loader.ts",
+        "./project-types/atom-package.ts",
+        "./project-types/node-app.ts",
+        "./project.ts",
+        "./services.ts",
+        "./util.ts"
+    ]
+}

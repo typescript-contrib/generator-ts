@@ -1,0 +1,9 @@
+/// <reference path="../../typings/tsd.d.ts"/>
+
+import app = require('../../src/main');
+
+describe('A suite', function() {
+  it('contains spec with an expectation', function() {
+    expect(app.main()).toBe(1);
+  });
+});

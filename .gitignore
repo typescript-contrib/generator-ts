@@ -1,0 +1,12 @@
+.idea/
+node_modules/
+*.map
+app/*.js
+app/*/*.js
+app/*/*/*.js
+app/*/*/*/*.js
+test/*.js
+test/*/*.js
+test/*/*/*.js
+test/*/*/*/*.js
+.tscache

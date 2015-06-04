@@ -1,0 +1,58 @@
+import models = require('../models');
+import services = require('../services');
+import askers = require('../askers');
+import project = require('../project');
+import util = require('../util');
+
+export class <%= normalizedName %>ProjectModel implements models.IProjectModel {
+    public name: string;
+    public projectName: string;
+    public normalizedProjectName: string;
+    public favoriteMusic: string;
+    // Hey! Add more properties here!
+}
+
+export class <%= normalizedName %>ProjectAsker implements askers.IAsker<<%= normalizedName %>ProjectModel> {
+
+    constructor(private promptservice: services.PromptService) {
+        //...
+    }
+
+    public ask(callback: (model: <%= normalizedName %>ProjectModel) => void): void {
+        this.promptservice.add({
+            type: 'list',
+            choices: ['Jazz', 'Rock', 'Rip-Rop'],
+            name: 'favoriteMusic',
+            getValue: function(value) {
+                return value;
+            },
+            message: 'What your favorite kind of music?',
+            validate: (answer: string) => {
+                return true;
+            }
+        });
+
+        this.promptservice.ask(callback);
+    }
+}
+
+export class <%= normalizedName %>ProjectService implements services.IProjectService {
+    private templatePath: string = 'project-types/<%= dirName %>/templates/';
+    private model: <%= normalizedName %>ProjectModel;
+
+    public setModel(model: <%= normalizedName %>ProjectModel): void {
+        this.model = model;
+    }
+
+    public createProject(): void {
+        // util.mkdir('dir name');
+        // util.appyTemplate(`${this.templatePath}_file.tmpl`, 'file', this.model);
+        // util.copy(`${this.templatePath}_file.tmpl`, 'file');
+    }
+}
+
+project.AvailableProjects.register(
+    '<%= name %>',
+    <%= normalizedName %>ProjectService,
+    <%= normalizedName %>ProjectModel,
+    <%= normalizedName %>ProjectAsker);
