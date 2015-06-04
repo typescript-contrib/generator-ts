@@ -1,3 +1,3 @@
-# generator-typescript
+# generator-ts
 
 Working in process...
